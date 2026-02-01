@@ -1,5 +1,15 @@
 
 const computerChoices = ["rock", "paper", "scissors"]; 
+let humanScore = 0;
+let computerScore = 0;
+let gameOver = false;
+const humanScoreDisplay = document.querySelector(".humanScoreDisplay");
+const computerScoreDisplay = document.querySelector(".computerScoreDisplay");
+const displayHumanChoice = document.querySelector(".humanChoice");
+const displayComputerChoice = document.querySelector(".computerChoice");
+const results = document.querySelector(".winner");
+const buttons = document.querySelectorAll(".btn");
+const resetButton = document.querySelector(".resetBtn");
 
 
 function getComputerChoice(){
@@ -8,77 +18,65 @@ function getComputerChoice(){
     return computerChoices[computerChoice];
 }
 
-function getHumanChoice(){
-    let userChoice = prompt("Rock, Paper or Scissors??").toLowerCase();
-    console.log(userChoice);
-    return userChoice;
-}
 
-function playRound(humanChoice, computerChoice, humanScore, computerScore){
+function playRound(humanChoice, computerChoice){
     if(humanChoice === computerChoice){
-        console.log(`Draw! Both chose ${computerChoice}`);
+        results.textContent = `Draw! Both chose ${computerChoice}`;
     }
     else if(humanChoice === "rock" && computerChoice === "scissors" ||
             humanChoice === "scissors" && computerChoice === "paper" ||
             humanChoice === "paper" && computerChoice === "rock"){
-        console.log(`You Won! ${humanChoice} beats ${computerChoice}`);
+        results.textContent = `You Won! ${humanChoice} beats ${computerChoice}`;
         humanScore++;
     }
     else{
-        console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
+        results.textContent = `You Lose! ${computerChoice} beats ${humanChoice}`;
         computerScore++;
     }
-    return [humanScore, computerScore];
 }
 
-let humanScore = 0;
-let computerScore = 0;
-/*
-function playGame(){
-    let humanScore = 0;
-    let computerScore = 0;
-
-    for(let i = 1; i <= 5; i++){
-        const computerSelection = getComputerChoice();
-        const humanSelection = getHumanChoice();
-       [humanScore, computerScore] = playRound(humanSelection, computerSelection, humanScore, computerScore);
-    }
-
-    if(humanScore > computerScore){
-        console.log(`Human Score: ${humanScore}\nComputer Score: ${computerScore}\nHuman Wins!`);
-    }
-    else if(computerScore > humanScore){
-        console.log(`Human Score: ${humanScore}\nComputer Score: ${computerScore}\nComputer Wins!`);
-    }
-    else{
-        console.log(`Human Score: ${humanScore}\nComputer Score: ${computerScore}\nDraw!!`);
-    }
-    
+function updateUI(computerChoice, humanChoice){
+    displayHumanChoice.textContent = `Your Choice: ${humanChoice}`;
+    displayComputerChoice.textContent = `Computer's Choice: ${computerChoice}`;
+    humanScoreDisplay.textContent = `Your Score: ${humanScore}.`;
+    computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
 }
-playGame();
-*/
-
 function resetGame(){
     humanScore = 0;
     computerScore = 0;
+    gameOver = false;
+    results.textContent = "";
+    updateUI("");
+}
+function checkWinner(){
+    if(humanScore === 5 || computerScore === 5){
+        gameOver = true;    
+        if(humanScore > computerScore){
+            results.textContent = "You Win!";
+        }
+        else if(humanScore < computerScore){
+            results.textContent = "Computer Wins!";
+        }
+        else{
+            results.textContent = "Game Draw!";
+        }
+    }
 }
 
-const resetButton = document.querySelector(".resetBtn");
 resetButton.addEventListener("click", () => {
-
+    resetGame();
 });
 
-const buttons = document.querySelectorAll(".btn");
 buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
-        const computerChoice = getComputerChoice();
-        [humanScore, computerScore] = playRound(button.textContent.toLowerCase(), computerChoice, humanScore, computerScore);
-        const humanScoreDisplay = document.querySelector(".humanScoreDisplay");
-        const computerScoreDisplay = document.querySelector(".computerScoreDisplay");
-        humanScoreDisplay.textContent = `Your Score: ${humanScore}.`;
-        computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
-        console.log([humanScore, computerScore]);
 
+        if(gameOver) return;
+        const humanChoice = button.textContent.toLowerCase();
+        const computerChoice = getComputerChoice();
+        playRound(humanChoice, computerChoice);
+        console.log([humanScore, computerScore]);
+        updateUI(computerChoice, humanChoice);
+        checkWinner();
     });
 });
 
