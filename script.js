@@ -38,7 +38,7 @@ function playRound(humanChoice, computerChoice){
 function updateUI(computerChoice, humanChoice){
     displayHumanChoice.textContent = `Your Choice: ${humanChoice}`;
     displayComputerChoice.textContent = `Computer's Choice: ${computerChoice}`;
-    humanScoreDisplay.textContent = `Your Score: ${humanScore}.`;
+    humanScoreDisplay.textContent = `Your Score: ${humanScore}`;
     computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
 }
 function resetGame(){

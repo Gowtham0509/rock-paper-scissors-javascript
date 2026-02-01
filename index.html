@@ -5,30 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Bitcount+Single:wght@100..900&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
 </head>
 <body>
     <header>
         <h1>ROCK, PAPER AND SCISSORS</h1>
     </header>
-    <div>
-        <button class="resetBtn">Reset</button>
-    </div>
+    
     <div id="btns">
         <button class="btn">Rock</button>
         <button class="btn">Paper</button>
         <button class="btn">Scissors</button>
     </div>
-    <div>
+    <div class="choices">
+        <p>Choices:</p>
         <div class="humanChoice"></div>
         <div class="computerChoice"></div>
     </div>
     <div class="results">
-        
-        <div class="humanScoreDisplay"></div>
-        <div class="computerScoreDisplay"></div>
+        <div class="humanScoreDisplay">Human Score:</div>
+        <div class="computerScoreDisplay">Computer Score:</div>
         <div class="winner"></div>
     </div>
-
+    <div class="reset">
+        <button class="resetBtn">Reset</button>
+    </div>
 </body>
 </html>

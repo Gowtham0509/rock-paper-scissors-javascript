@@ -1,10 +1,73 @@
-body {
-    background-color: #6AECE1;
+body{
+    /* background-color: #6AECE1; */
+    background-color: #FCF8F8;
+}
+
+body, button {
+        font-family: "Bitcount Single", sans-serif;
 }
 
 header {
-    background-color: #FFB76C;
+    background-color: #F5AFAF;
     padding: 8px;
     text-align: center;
     margin: 5px 0px;
+}
+
+#btns {
+    background-color: #FFDAB3;
+    padding: 15px;
+    text-align: center;
+}
+
+#btns > button {
+    background-color: #8CA9FF;
+    padding: 10px 15px;
+    margin: 5px 5px;
+    font-weight: bolder;
+    font-size: 25px;
+    border-radius: 3px;
+    border-color: black;
+}
+.choices{
+    background-color: #A8DF8E;
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+.choices > p {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.choices > div {
+    font-size: 23px;
+    /* font-weight: bold; */
+}
+
+.results {
+    font-size: 23px;
+    background-color:#CDC1FF;
+    padding:10px;
+}
+
+.humanScoreDisplay, .computerScoreDisplay {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.winner {
+    color: #F63049;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.reset button {
+    background-color: #FF0000;
+    padding: 10px 15px;
+    margin: 5px 5px;
+    font-weight: bolder;
+    font-size: 25px;
+    border-radius: 3px;
+    border-color: black;
 }
