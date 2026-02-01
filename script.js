@@ -31,6 +31,9 @@ function playRound(humanChoice, computerChoice, humanScore, computerScore){
     return [humanScore, computerScore];
 }
 
+let humanScore = 0;
+let computerScore = 0;
+/*
 function playGame(){
     let humanScore = 0;
     let computerScore = 0;
@@ -52,5 +55,31 @@ function playGame(){
     }
     
 }
-
 playGame();
+*/
+
+function resetGame(){
+    humanScore = 0;
+    computerScore = 0;
+}
+
+const resetButton = document.querySelector(".resetBtn");
+resetButton.addEventListener("click", () => {
+
+});
+
+const buttons = document.querySelectorAll(".btn");
+buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        const computerChoice = getComputerChoice();
+        [humanScore, computerScore] = playRound(button.textContent.toLowerCase(), computerChoice, humanScore, computerScore);
+        const humanScoreDisplay = document.querySelector(".humanScoreDisplay");
+        const computerScoreDisplay = document.querySelector(".computerScoreDisplay");
+        humanScoreDisplay.textContent = `Your Score: ${humanScore}.`;
+        computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
+        console.log([humanScore, computerScore]);
+
+    });
+});
+
+
